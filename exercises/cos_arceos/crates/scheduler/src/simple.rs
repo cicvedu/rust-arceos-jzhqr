@@ -1,5 +1,6 @@
 use alloc::{collections::VecDeque, sync::Arc};
 use core::ops::Deref;
+//use core::sync::atomic:: Ordering;
 
 use crate::BaseScheduler;
 
@@ -82,7 +83,10 @@ impl<T> BaseScheduler for SimpleScheduler<T> {
     }
 
     fn task_tick(&mut self, _current: &Self::SchedItem) -> bool {
-        false // no reschedule
+        //false // no reschedule
+       // let old_slice = _current.time_slice.fetch_sub(1, Ordering::Release);
+        //old_slice <= 1
+        true
     }
 
     fn set_priority(&mut self, _task: &Self::SchedItem, _prio: isize) -> bool {
